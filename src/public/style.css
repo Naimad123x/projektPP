@@ -1,0 +1,18 @@
+@font-face {
+    font-family: Poppins_v;
+    src: url(Poppins-Regular.woff);
+}
+
+* {
+    background-color: #151515;
+    font-family: Poppins_v, Poppins, Roboto, sans-serif !important;
+    color: #e6e6e6;
+}
+
+html {
+    margin: 2em 20%;
+}
+
+b {
+    color: #adcfe6
+}
