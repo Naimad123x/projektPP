@@ -23,4 +23,4 @@ jobs:
 workflows:
   test-workflow:
     jobs:
-      - test
+      - build_and_test
