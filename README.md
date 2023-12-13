@@ -2,7 +2,7 @@
 
 ## 🧐 How to start?
 
-1. Configure the `.env` file:
+1. Create the `.env` file in the main path with these variables:
 ```
 PORT=3000
 API_KEY=
@@ -17,4 +17,7 @@ EMAIL_PASSWORD=
 ```
 > `API_KEY` is default dev key.
 
-2.
+2. Run code
+```cli
+npm start;
+```
