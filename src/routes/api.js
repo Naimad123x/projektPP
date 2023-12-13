@@ -19,7 +19,7 @@ api.get(`/info`, async (req, res) => {
   )
 })
 
-api.get(`/city/:city`,authenticateKey, async (req, res) => {
+api.get(`/location/:city`,authenticateKey, async (req, res) => {
   const {city} = req.params;
   const lang = req.query.lang ?? "EN";
   const format = req.query.format ?? "json";

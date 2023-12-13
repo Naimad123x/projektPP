@@ -11,8 +11,11 @@ router.get(`/location/:city`, async (req, res) => {
   const {city} = req.params;
   const {lang} = req.query || "en";
 
-  await fetch(`/api/location/${city}?lang=${lang}&key=${process.env.API_KEY}`)
-  return res.render(`city`)
+  const response =
+    await fetch(`http://localhost:3000/api/location/${city}?lang=${lang}&key=${process.env.API_KEY}`)
+
+  const body = await response.json();
+  return res.render(`city`, {city: body})
 })
 
 export default router
