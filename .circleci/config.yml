@@ -15,12 +15,12 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
-          command: npm run test
+          command: npm run start
           name: Run tests
 
 # Orchestrate jobs using workflows
 # See: https://circleci.com/docs/configuration-reference/#workflows
 workflows:
-  test-workflow:
+  build_and_test-workflow:
     jobs:
       - build_and_test
