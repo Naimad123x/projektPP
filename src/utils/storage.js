@@ -12,6 +12,18 @@ export async function getApiKey(email) {
   })
 }
 
+export async function findApiKey(key) {
+  return await new Promise(async function (resolve, reject) {
+    pool.query("SELECT * FROM `api_keys` WHERE `key` = ?",
+      [key],
+      function (err, rows) {
+        if (err)
+          return reject(err);
+        return resolve(rows);
+      });
+  })
+}
+
 export async function saveApiKey(email, hashedEmail, apiKey, date) {
   logger.newApiKey(email, apiKey, date)
   return await new Promise(async function (resolve, reject) {

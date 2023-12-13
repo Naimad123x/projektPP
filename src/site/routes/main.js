@@ -1,9 +1,15 @@
 import * as express from "express";
 const router = express.Router();
 import fetch from "node-fetch";
+import {limiter} from "../../utils/limiter.js";
 
 router.get(`/`, (req, res) =>{
   return res.render(`main`)
+})
+
+router.get('/reset', async (req, res) => {
+    limiter.resetKey(req.ip);
+    res.send('Rate limit is reset!')
 })
 
 router.get(`/location/:city`, async (req, res) => {

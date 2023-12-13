@@ -32,8 +32,10 @@ api.get(`/location/:city`,authenticateKey, async (req, res) => {
     return res.send({"error": "No city provided"});
   try{
     let response = await WeatherManager.getWeather(city, lang);
-    if(response)
+    if(response) {
       response.iconUrl = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
+      response.rateLimit = req.rateLimit;
+    }
     if(format === `xml`) {
       const xmlResponse = js2xmlparser.parse("data", response);
       res.set('Content-Type', 'text/xml');

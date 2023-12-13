@@ -1,7 +1,9 @@
-export default function authenticateKey(req, res, next) {
+import {findApiKey} from "./storage.js";
+
+export default async function authenticateKey(req, res, next) {
   const {key} = req.query;
-  // if(!key || key !== `TKK3mjft4bQhNppANGLzUruQd9eZiyKdZpVKtvVhdCkKcfOioW`)
-  if(!key || key !== process.env.API_KEY)
-    return res.status(403).send({ error: { code: 403, message: "You not allowed." } });
+  const foundedKey = await findApiKey(key ?? "none");
+  if (!key || key !== process.env.API_KEY && foundedKey.length < 1)
+    return res.status(403).send({error: {code: 403, message: "You not allowed."}});
   next();
 }
