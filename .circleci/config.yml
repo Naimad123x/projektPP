@@ -15,7 +15,7 @@ jobs:
       - node/install-packages:
           pkg-manager: npm
       - run:
-          command: npm run start
+          command: npm test
           name: Run tests
 
 # Orchestrate jobs using workflows

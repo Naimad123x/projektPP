@@ -4,19 +4,17 @@ const app = express();
 import bodyParser from 'body-parser'
 import {join} from "path";
 
-import LoggerManager from "../utils/logger.js";
-
-const logger = new LoggerManager();
-logger.checkLogDir().initEvents();
-
-export {logger};
-
 import router from './routes/main.js';
 import api from './routes/api.js';
 import * as path from "path";
 import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
+
+import LoggerManager from "../utils/logger.js";
+
+const logger = new LoggerManager();
+logger.checkLogDir().initEvents();
 
 const port = process.env.PORT;
 app
@@ -35,3 +33,5 @@ app
   .listen(port, () => {
     console.log(`server listening on port ${port}`);
   });
+
+export {logger, app};

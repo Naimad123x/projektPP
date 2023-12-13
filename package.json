@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node src/site/app.js"
+    "start": "node src/site/app.js",
+    "test": "mocha"
   },
   "keywords": [],
   "author": "",
@@ -20,10 +21,12 @@
     "fast-geoip": "^1.1.88",
     "geoip-lite": "^1.4.9",
     "js2xmlparser": "^5.0.0",
+    "mocha": "^10.2.0",
     "mysql2": "^3.6.5",
     "node-fetch": "^3.3.2",
     "nodemailer": "^6.9.7",
     "public-ip": "^6.0.1",
+    "supertest": "^6.3.3",
     "xml": "^1.0.1",
     "xml-js": "^1.6.11"
   },
