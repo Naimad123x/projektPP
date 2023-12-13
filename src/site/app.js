@@ -3,7 +3,7 @@ import 'dotenv/config'
 const app = express();
 import bodyParser from 'body-parser'
 import {join} from "path";
-
+import {limiter} from "../utils/limiter.js"
 import router from './routes/main.js';
 import api from './routes/api.js';
 import * as path from "path";
@@ -24,7 +24,7 @@ app
   .set(`view engine`, `ejs`)
   .set('views', join(__dirname, '/views'))
   .use(express.static(join(__dirname, '/public')))
-
+  .use(limiter)
 
   .use("/", router)
   .use("/api", api)
