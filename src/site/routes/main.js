@@ -1,7 +1,6 @@
 import * as express from "express";
 const router = express.Router();
 import fetch from "node-fetch";
-import 'dotenv/config'
 
 router.get(`/`, (req, res) =>{
   return res.render(`main`)
