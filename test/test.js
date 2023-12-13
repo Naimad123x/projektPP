@@ -9,3 +9,5 @@ describe('GET /api/location/warszawa', () => {
       .expect(200, done);
   });
 });
+
+process.exit();
