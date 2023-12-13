@@ -1,7 +1,16 @@
 import express from 'express';
+import 'dotenv/config'
 const app = express();
 import bodyParser from 'body-parser'
 import {join} from "path";
+
+import LoggerManager from "../utils/logger.js";
+
+const logger = new LoggerManager();
+logger.checkLogDir().initEvents();
+
+export {logger};
+
 import router from './routes/main.js';
 import api from './routes/api.js';
 import * as path from "path";
@@ -9,8 +18,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const port = 3000;
-
+const port = process.env.PORT;
 app
   .disable('x-powered-by')
   .use(bodyParser.urlencoded({ extended: true }))
