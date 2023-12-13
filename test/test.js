@@ -10,4 +10,4 @@ describe('GET /api/location/warszawa', () => {
   });
 });
 
-process.exit()
+process.exit();
