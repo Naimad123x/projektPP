@@ -18,6 +18,6 @@ EMAIL_PASSWORD=
 > `API_KEY` is default dev key.
 
 2. Run code
-```cli
-npm start;
+```sh
+npm start
 ```
