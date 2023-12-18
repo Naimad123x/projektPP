@@ -45,6 +45,10 @@ export default class LoggerManager {
     this.eventEmitter.emit(`newApiKey`, email,apiKey,date)
   }
 
+  newApiRequest(data){
+    this.eventEmitter.emit(`newApiRequest`, data)
+  }
+
   emailSended(email, message){
     this.checkActualFile();
     this.eventEmitter.emit(`emailSend`, email,message)
