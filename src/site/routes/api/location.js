@@ -10,16 +10,18 @@ export async function location(req, res) {
   if (!city)
     return res.send({"error": "No city provided"});
 
-  logger.newApiRequest({
-    location: city,
-    params: {
-      params: req.params,
-      query: req.query,
-    },
-    date: Date.now()
-  });
 
   try{
+
+
+    logger.newApiRequest({
+      location: city,
+      params: {
+        params: req.params,
+        query: req.query,
+      },
+      date: Date.now()
+    });
 
 
     let response = await WeatherManager.getWeather(city, lang);
@@ -27,21 +29,25 @@ export async function location(req, res) {
       response.iconUrl = "http://openweathermap.org/img/w/" + response.weather[0].icon + ".png";
       response.rateLimit = req.rateLimit;
     }
+    console.log(format)
     if(format === `xml`) {
 
-      const xmlResponse = js2xmlparser.parse("data", response);
-      res.set('Content-Type', 'text/xml');
-      return res.send(xmlResponse);
+      console.log(response)
+      const xmlResponse = js2xmlparser.parse("data", response, {replaceInvalidChars: true});
+      console.log(xmlResponse)
+      await res.set('Content-Type', 'text/xml');
+      return await res.send(xmlResponse);
 
     } else {
 
-      return res.json(response)
+      return await res.json(response)
 
     }
 
 
   }catch(e){
 
+    console.log(e)
     return res.send(e)
 
   }
