@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Api Key Request</title>
+</head>
+<body>
+<div id="content">
+    <form id="api-key-request">
+        <div>
+            <label for="email">Enter your email:</label>
+            <input type="email" id="email" name="email" placeholder="email" />
+        </div>
+
+        <input type="submit" value="Submit" />
+    </form>
+</div>
+
+<script>
+  const form = document.querySelector("#api-key-request");
+  const content = document.querySelector("#content");
+
+  async function sendData() {
+    // Associate the FormData object with the form element
+    const email = document.getElementById('email').value;
+
+    const data = {
+      "email": email
+    }
+    console.log(data)
+
+    try {
+
+      let formBody = [];
+      for (const property in data) {
+        const encodedKey = encodeURIComponent(property);
+        const encodedValue = encodeURIComponent(data[property]);
+        formBody.push(encodedKey + "=" + encodedValue);
+      }
+      formBody = formBody.join("&");
+
+      const response = await fetch("http://localhost:3000/api/api-key-request", {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded;charset=UTF-8'
+        },
+        body: formBody,
+      });
+      const json = await response.json();
+      console.log(json);
+      if(json.error)
+        content.innerHTML = `<p style="color: #e84747">${json.error}</p>`
+      else
+        content.innerHTML = `<p style="color: #bcff76">${json.message}</p>`
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  // Take over form submission
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    sendData();
+  });
+</script>
+</body>
+</html>

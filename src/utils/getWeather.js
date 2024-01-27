@@ -1,4 +1,5 @@
 import {AsyncWeather} from '@cicciosgamino/openweather-apis'
+import latinize from 'latinize';
 
 const weather = await new AsyncWeather()
 
@@ -8,6 +9,8 @@ class WeatherManager {
   async getWeather(city, lang) {
     if (!city)
       throw new Error(`City is not set!`);
+    city = latinize(city);
+    console.log(city)
     weather.setLang(lang);
     weather.setCity(city);
     return await weather.getAllWeather();
