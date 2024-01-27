@@ -8,7 +8,7 @@ import crypto from "crypto";
 export async function apiKeyRequest(req, res) {
   const {email} = req.body;
   if(!emailRegex({ exact: true }).test(email))
-    return res.sendStatus(400)
+    return res.sendStatus(400);
   const hashedEmail = hashEmail(email);
   const accountExists = await getApiKey(hashedEmail);
   if(accountExists.length > 0){

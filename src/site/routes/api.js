@@ -13,4 +13,8 @@ api.get(`/location/:city`,authenticateKey, location)
 
 api.post(`/api-key-request`, apiKeyRequest)
 
+api.get(`/api-key-request`, (req,res)=>{
+  res.render('apiKeyReq')
+})
+
 export default api;
