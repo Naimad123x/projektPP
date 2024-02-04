@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather Search</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+        #search-info {
+            background-color: #3498db;
+            color: white;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #search-container {
+            margin: 20px auto;
+            text-align: center;
+        }
+
+        label {
+            margin-right: 10px;
+        }
+
+        button {
+            padding: 8px;
+            background-color: #3498db;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #weatherResult {
+            margin: 20px auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div id="search-info">
+    <p>Wpisz miasto:</p>
+</div>
+
+<div id="search-container">
+    <label for="cityInput">Enter city name:</label>
+    <input type="text" id="cityInput" placeholder="City name" />
+    <button onclick="searchWeather()">Search</button>
+</div>
+
+<div id="weatherResult">
+
+</div>
+
+<script>
+    async function searchWeather() {
+        const cityInput = document.getElementById('cityInput').value;
+
+        try {
+            const response = await fetch(`/api/location/${cityInput}`);
+            const data = await response.json();
+
+            const weatherResult = document.getElementById('weatherResult');
+            weatherResult.innerHTML = `<h2>${data.name}</h2>`;
+        } catch (error) {
+            console.error(error);
+            const weatherResult = document.getElementById('weatherResult');
+            weatherResult.innerHTML = `<p style="color: #e84747">Error retrieving weather data</p>`;
+        }
+    }
+</script>
+</body>
+</html>
