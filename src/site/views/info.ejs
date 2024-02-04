@@ -56,14 +56,14 @@
 
 <% if (data.name) {%>>
 
-<div id="weatherResult">
-    <h2><%= data.name %></h2>
-    <p>Temperatura: <%= data.main.temp %> &#8451;</p>
-    <p>Zachmurzenie: <%= data.weather[0].description %></p>
-    <p>Opady: <%= data.rain ? data.rain["1h"] : 0%> mm</p>
-    <p>Prędkość wiatru: <%= data.wind.speed %> m/s</p>
-    <p>Warunki: <%= data.weather[0].main %></p>
-</div>
+    <div id="weatherResult">
+        <h2><%= data.name %></h2>
+        <p>Temperatura: <%= data.main.temp %> &#8451;</p>
+        <p>Zachmurzenie: <%= data.weather[0].description %></p>
+        <p>Opady: <%= data.rain ? data.rain["1h"] : 0%> mm</p>
+        <p>Prędkość wiatru: <%= data.wind.speed %> m/s</p>
+        <p>Warunki: <%= data.weather[0].main %></p>
+    </div>
 <% } %>
 <script>
     async function searchWeather() {

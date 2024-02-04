@@ -8,6 +8,6 @@ export async function info(req, res) {
         await fetch(`http://localhost:3000/api/location/${city}?lang=${lang}&key=${process.env.API_KEY}`);
 
     const body = await response.json();
-    console.log(body)
+    // console.log(body)
     return res.render(`info`, {data: body})
 }
